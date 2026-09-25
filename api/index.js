@@ -1,7 +1,9 @@
-module.exports = (req, res) => {
-  res.json({
-    status: "✅ TOP BOMBER LIVE!",
-    joke: "Why the bomb no go school? E don already blow class! 💣😂",
-    api_key: process.env.TAP_BOMBA_API_KEY ? "🔒 Secured" : "Not set"
-  });
+async function getBombaJoke() {
+  const res = await fetch('https://tap-bomba-api-key.vercel.app/api');
+  const data = await res.json();
+  console.log(data.joke);
+  // Put data.joke inside your HTML
+  document.getElementById('joke-box').innerText = data.joke;
 }
+
+getBombaJoke();
